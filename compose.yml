@@ -15,8 +15,6 @@ services:
     depends_on:
       - mongo
       - squid
-    stdin_open: true
-    tty: true
 
   squid:
     image: ubuntu/squid:5.2-22.04_beta
