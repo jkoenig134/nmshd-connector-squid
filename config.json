@@ -1,0 +1,12 @@
+{
+  "database": {
+    "connectionString": "mongodb://mongo:27017",
+    "dbName": "mydb"
+  },
+  "infrastructure": {
+    "httpServer": {
+      "apiKey": "xxx"
+    }
+  },
+  "modules": {}
+}

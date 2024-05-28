@@ -1,0 +1,38 @@
+services:
+  connector:
+    image: ghcr.io/nmshd/connector:latest
+    container_name: connector
+    ports:
+      - "3000:80"
+    environment:
+      - CUSTOM_CONFIG_LOCATION=/config.json
+      - transportLibrary__baseUrl
+      - transportLibrary__platformClientId
+      - transportLibrary__platformClientSecret
+      - https_proxy=http://squid:3128
+    volumes:
+      - ./config.json:/config.json:ro
+    depends_on:
+      - mongo
+      - squid
+    stdin_open: true
+    tty: true
+
+  squid:
+    image: ubuntu/squid:5.2-22.04_beta
+    environment:
+      - TZ=UTC
+
+  mongo:
+    container_name: mongo
+    hostname: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    logging:
+      driver: none
+
+volumes:
+  mongo_data:
