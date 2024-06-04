@@ -1,6 +1,7 @@
 services:
   connector:
-    image: ghcr.io/nmshd/connector:latest
+    # works under >3.11.4
+    image: ghcr.io/nmshd/connector:3.11.4
     container_name: connector
     ports:
       - "3000:80"
